@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Road Issue - RoadWatch</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Road Issue - RoadWatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary-color: #4F46E5;
+            --primary-hover: #4338CA;
+            --secondary-color: #1F2937;
+            --accent-color: #EF4444;
+            --background-color: #F9FAFB;
+            --text-color: #374151;
+            --success-color: #10B981;
+            --warning-color: #FBBF24;
+            --pending-color: #F97316;
+            --card-bg: white;
+            --input-bg: #F3F4F6;
+            --input-border: #E5E7EB;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .user-dropdown {
+            position: relative;
+        }
+
+        .user-icon-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--input-bg);
+            border-radius: 9999px;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .user-icon-link:hover {
+            background-color: var(--input-border);
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .user-icon-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-icon-circle i {
+            color: white;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            right: 0;
+            top: 120%;
+            background-color: white;
+            min-width: 200px;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+
+        .user-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--input-bg);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background-color: transparent;
+        }
+
+        .left-side, .right-side {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        input[type="text"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 0.95rem;
+            border-radius: 0.5rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-color);
+            transition: all 0.2s ease;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            background-color: white;
+            border: 2px dashed var(--input-border);
+            cursor: pointer;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.875rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .alert-success {
+            background-color: #ECFDF5;
+            color: #065F46;
+            border: 1px solid #A7F3D0;
+        }
+
+        .alert-error {
+            background-color: #FEF2F2;
+            color: #991B1B;
+            border: 1px solid #FECACA;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .user-name {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-road"></i>
+                RoadWatch
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'user_home' %}">Home</a>
+                <a href="{% url 'view_complaint' %}">View Complaint</a>
+                <a href="{% url 'view_map' %}">Map</a>
+            </div>
+            <div class="user-dropdown">
+                <div class="user-icon-link">
+                    <span class="user-name">Hello, {{ user.first_name|default:"User"}}</span>
+                    <div class="user-icon-circle">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="dropdown-content">
+                    <a href="{% url 'profile_settings' %}">
+                        <i class="fas fa-user-cog"></i>
+                        Profile Settings
+                    </a>
+                    <a href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+   
+    <main class="main-content">
+        <div class="container">
+            <!-- Left Side: Image Upload and Form -->
+            <div class="left-side">
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <form id="report-form" method="post" enctype="multipart/form-data" action="{% url 'raise_complaint' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="image-capture">Capture Image</label>
+                        <input 
+                        name = "image"
+                        type="file" 
+                        id="image-capture" 
+                        accept="image/*" 
+                        capture="camera" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issue-type">Type of Issue</label>
+                        <select name = "issue_type" id="issue-type" required>
+                            <option value="">Select an issue</option>
+                            <option value="pothole">Pothole</option>
+                            <option value="crack">Crack</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="severity">Severity</label>
+                        <select name = "severity" id="severity" required>
+                            <option value="">Select severity</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name = "description" id="description" rows="4"></textarea>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="coordinates">Location Coordinates</label>
+                        <input type="text" id="coordinates" readonly />
+                    </div> -->
+
+                    <button type="submit">Submit Report</button>
+                
+            </div>
+
+            <!-- Right Side: Map -->
+            <div class="right-side">
+                <label for="coordinates">Location Coordinates</label>
+                <input name = "coordinates" type="text" id="coordinates" readonly />
+            
+                <label for="location">Location Name</label>
+                <input 
+                name="location" 
+                type="text" 
+                id="location" 
+                required/>
+                
+                <h1>Report Road Issue</h1>
+                <!-- <div id="map"></div> -->
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </main>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpLbJtpojpCBjolk2MVWQO1Y0q6H7XfsA&callback=initMap"></script> <!-- Include this for Google Maps API -->
+
+    <script>
+        let map;            
+        let marker;
+
+        // Function to initialize map at user's location
+        function initializeMap(latitude, longitude) {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: latitude, lng: longitude },
+                zoom: 12,
+            });
+
+            // Place a draggable marker at user's location
+            marker = new google.maps.Marker({
+                position: { lat: latitude, lng: longitude },
+                map: map,
+                draggable: true,
+            });
+
+            // Display initial coordinates in input field
+            document.getElementById('coordinates').value = `${latitude}, ${longitude}`;
+
+            // Update coordinates on marker drag end
+            marker.addListener('dragend', function() {
+                const newPos = marker.getPosition();
+                document.getElementById('coordinates').value = `${newPos.lat()}, ${newPos.lng()}`;
+            });
+        }
+
+        // Use Geolocation API to get current position and initialize the map
+        function initLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        initializeMap(lat, lng); // Initialize map with user location
+                    },
+                    error => {
+                        console.error("Geolocation error:", error);
+                        alert("Unable to retrieve your location. Please enable location services.");
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Call the initLocation function to start the process
+        window.onload = initLocation;
+    </script>
+</body>
+</html>
