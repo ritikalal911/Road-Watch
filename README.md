@@ -71,13 +71,7 @@ python manage.py runserver
 
 1. Access the application at `http://127.0.0.1:8000`
 2. Login to the admin panel at `http://127.0.0.1:8000/admin` using superuser credentials
-
-## Troubleshooting
-
-If you encounter the error 'mysql' is not recognized:
-1. Verify MySQL installation
-2. Check if MySQL is added to system PATH
-3. Try using the full path to MySQL executable
+   
 
 ## Contributing
 
