@@ -175,25 +175,3 @@ The application will be available at [http://127.0.0.1:8000](http://127.0.0.1:80
 To access the Django Admin Panel, go to [http://127.0.0.1:8000/admin]() and log in using the superuser credentials created earlier.
 
 ---
-
-## **Project Structure**
-
-The project has the following directory structure:
-
-myproject/
-├── .venv/                        # Virtual environment folder
-│   ├── Include/
-│   ├── Lib/
-│   └── Scripts/
-├── .vscode/                       # VSCode settings
-├── myapp/                         # Django app containing core functionality
-│   ├── media/                     # Media folder for uploaded files
-│   ├── migrations/                # Database migrations
-│   ├── static/                    # Static files (CSS, JS, Images, etc.)
-│   ├── templates/                 # HTML templates
-│   └── src/                       # Source code
-├── myproject/                     # Main project configuration files
-├── manage.py                      # Django project manager file
-├── requirements.txt               # List of Python dependencies
-└── roadwatch_database.sql # SQL file for importing the database
-# Road-watch
